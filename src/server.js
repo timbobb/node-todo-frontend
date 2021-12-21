@@ -14,5 +14,5 @@ require('./routes/routes')(server);
 //    console.log("Node JS app is running at http://localhost:" + (process.env.PORT ? process.env.PORT : 3000));
 //});
 
-app.listen(PORT, HOST);
+server.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
