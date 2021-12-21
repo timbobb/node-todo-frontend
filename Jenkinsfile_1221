@@ -1,0 +1,44 @@
+//Jenkins file only to tutorial example
+node {
+
+    stage('CodeCheckout') {
+        sh "echo running ebay nodeJS project"  
+        git 'https://github.com/timbobb/node-todo-frontend.git'
+    }
+        
+    stage('Install dependencies') {
+        sh "echo creating and installing artifacts"  
+        nodejs(nodeJSInstallationName: 'node') {
+        sh 'npm install'
+        }
+    }
+     
+    stage('Test') {
+        sh "echo run unit test" 
+        nodejs(nodeJSInstallationName: 'node') {
+        sh 'npm test'
+        }
+    }
+    stage('QuailityReport') {
+        sh "echo CodeQualityReport" 
+        nodejs(nodeJSInstallationName: 'node') {
+        sh 'npm run sonar'
+        }
+    }
+    stage('UploadArtifacts') {
+        sh "echo npm packages uploaded" 
+        nodejs(nodeJSInstallationName: 'node') {
+        sh 'npm publish'
+        }
+    }
+    stage('Deployment') {
+        sh "echo Deploying applicatons" 
+        nodejs(nodeJSInstallationName: 'node') {
+        sh 'npm start'
+        }
+    }
+  }
+
+
+
+
