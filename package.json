@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Front-end service with node.js and handlebars for microservice example",
   "main": "server.js",
+  "publishConfig": {
+    "registry": "http://54.86.140.116:8081/repository/node-todo-frontend-npm-repo/"
+  },
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
